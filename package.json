@@ -1,0 +1,11 @@
+{
+  "name": "quaggajs",
+  "version": "1.0.0",
+  "description": "Exemplo simples de leitura de código de barras usando o QuaggaJS",
+  "main": "quagga.min.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
