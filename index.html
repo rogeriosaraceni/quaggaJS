@@ -19,14 +19,23 @@
 
         #camera{
             display: flex;
-            max-width: 300px;
+            width: 300px;
+            height: 100px;
             padding: 1rem;
             background-color: #eee;
+        }
+        #camera video{
+            width: 100%;
+            object-fit: cover;
         }
     </style>
 
     <body>
+        <!-- Vídeo aula -->
         <!-- https://www.youtube.com/watch?v=0vQvAssw2Lg -->
+
+        <!-- Gerador de codigo debarras Free -->
+        <!-- https://barcode.tec-it.com/en -->
 
         <div id="resultado"></div>
         <div id="camera"></div>
@@ -34,6 +43,12 @@
         <script src="quagga.min.js"></script>
 
         <script>
+            if (navigator.mediaDevices && typeof navigator.mediaDevices.getUserMedia === 'function') {
+                // safely access `navigator.mediaDevices.getUserMedia`
+                console.log(navigator.mediaDevices.getUserMedia);
+            }
+
+
             Quagga.init({
                 inputStream: {
                     name: "Live",
@@ -56,6 +71,7 @@
                 console.log(data.codeResult.code);
                 document.querySelector('#resultado').innerText = data.codeResult.code;
             });
+
         </script>
     </body>
 </html>
