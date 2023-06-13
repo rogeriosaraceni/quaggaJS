@@ -5,73 +5,34 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title> Ler Barcode </title>
+
+        <link href="./assets/css/bootstrap.min.css" rel="stylesheet">
+        <link href="./assets/css/styles.css" rel="stylesheet">
     </head>
 
-    <style>
-        #resultado{
-            display: flex;
-            max-width: 300px;
-            margin-bottom: 1rem;
-            padding: 1rem;
-            background-color: #eee;
+    <!-- Vídeo aula -->
+    <!-- https://www.youtube.com/watch?v=0vQvAssw2Lg -->
 
-        }
-
-        #camera{
-            display: flex;
-            width: 300px;
-            height: 100px;
-            padding: 1rem;
-            background-color: #eee;
-        }
-        #camera video{
-            width: 100%;
-            object-fit: cover;
-        }
-    </style>
+    <!-- Gerador de codigo debarras Free -->
+    <!-- https://barcode.tec-it.com/en -->
 
     <body>
-        <!-- Vídeo aula -->
-        <!-- https://www.youtube.com/watch?v=0vQvAssw2Lg -->
+        <div class="container py-4">
+            <h6 class="mb-4">Aponte a câmera do dispositivo na etiqueta com código de barras:</h6>
+            
+            <section class="d-flex align-items-center flex-column" style="max-width: 400px;">
+                <strong class="w-100">Valor capturado:</strong>
+                <div class="w-100 bg-light p-3 border border-dark-subtle rounded mb-2" id="resultado"></div>
+                <div class="w-100 bg-light p-3 border border-dark-subtle rounded mb-2" id="camera"></div>
+            </section>
 
-        <!-- Gerador de codigo debarras Free -->
-        <!-- https://barcode.tec-it.com/en -->
-
-        <div id="resultado"></div>
-        <div id="camera"></div>
-
-        <script src="quagga.min.js"></script>
-
-        <script>
-            if (navigator.mediaDevices && typeof navigator.mediaDevices.getUserMedia === 'function') {
-                // safely access `navigator.mediaDevices.getUserMedia`
-                console.log(navigator.mediaDevices.getUserMedia);
-            }
-
-
-            Quagga.init({
-                inputStream: {
-                    name: "Live",
-                    type: "LiveStream",
-                    target: document.querySelector('#camera')    // Or '#yourElement' (optional)
-                },
-                decoder: {
-                    readers: ["code_128_reader"]
-                }
-            }, function (err) {
-                if (err) {
-                    console.log(err);
-                    return
-                }
-                console.log("Initialization finished. Ready to start");
-                Quagga.start();
-            });
-
-            Quagga.onDetected(function (data) {
-                console.log(data.codeResult.code);
-                document.querySelector('#resultado').innerText = data.codeResult.code;
-            });
-
-        </script>
+            <p>
+                <img src="./assets/images/git.svg" width="20px"> 
+                <a href="https://github.com/serratus/quaggajs" target="_blank">quaggaJS</a>
+            </p>
+        </div>
+        
+        <script src="./assets/js/quagga.min.js"></script>
+        <script src="./assets/js/quagga-config.js"></script>
     </body>
 </html>
